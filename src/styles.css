@@ -1,26 +1,47 @@
 div {
-  padding: 10px; 
-  margin: 0px;
-  color: white;
+  padding: 10px;
+  margin: 10px 0;
   text-align: center;
   border: 1px solid #ccc;
+  border-radius: 5px;
+  font-weight: bold;
 }
 
+div[data-strength="weak"] {
+  background-color: red;
+}
 
-  div[data-strength="weak"] {
-    background-color: red;
-  }
-  
-  div[data-strength="medium"] {
-    background-color: yellow;
-  }
-  
-  div[data-strength="strong"] {
-    background-color: green;
-  }
-  
-  input[type="password"] {
-    width: 100%; 
-    padding: 10px 0;
-    margin: 10px 0;    
-  }
+div[data-strength="medium"] {
+  background-color: yellow;
+}
+
+div[data-strength="strong"] {
+  background-color: green;
+}
+
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+div[data-strength="weak"]::after,
+div[data-strength="medium"]::after,
+div[data-strength="strong"]::after {
+  content: "Слабкий";
+  color: black;
+}
+
+div[data-strength="medium"]::after {
+  content: "Середній";
+  color: black;
+}
+
+div[data-strength="strong"]::after {
+  content: "Міцний";
+  color: black;
+}

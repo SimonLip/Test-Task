@@ -1,21 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { PasswordStrengthService } from './password-strength.service';
 
-import { PasswordStrengthComponent } from './password-strength.component';
+@Component({
+  selector: 'app-password-strength',
+  templateUrl: './password-strength.component.html',
+  styleUrls: ['./password-strength.component.css']
+})
+export class PasswordStrengthComponent {
+  password: string = '';
 
-describe('PasswordStrengthComponent', () => {
-  let component: PasswordStrengthComponent;
-  let fixture: ComponentFixture<PasswordStrengthComponent>;
+  constructor(private passwordStrengthService: PasswordStrengthService) {}
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [PasswordStrengthComponent]
-    });
-    fixture = TestBed.createComponent(PasswordStrengthComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  getPasswordStrengthColor() {
+    const strength = this.passwordStrengthService.checkPasswordStrength(this.password);
+    return strength === 'weak' ? 'red' : strength === 'medium' ? 'yellow' : 'green';
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  getPasswordStrengthText() {
+    const strength = this.passwordStrengthService.checkPasswordStrength(this.password);
+    return strength === 'weak' ? 'Слабкий' : strength === 'medium' ? 'Середній' : 'Міцний';
+  }
+}

@@ -7,17 +7,26 @@ import { Component } from '@angular/core';
 })
 export class PasswordStrengthComponent {
   password: string = '';
-  passwordStrength: string = '';
 
   checkPasswordStrength() {
     if (this.password.length === 0) {
-      this.passwordStrength = ''; // Змінено на порожній рядок, якщо поле порожнє
+      return '';
     } else if (this.password.length < 8) {
-      this.passwordStrength = 'weak';
+      return 'weak';
     } else if (/[a-zA-Z]/.test(this.password) && /[0-9]/.test(this.password) && /[!@#$%^&*()_+[\]{};':"\\|,.<>?]/.test(this.password)) {
-      this.passwordStrength = 'strong';
+      return 'strong';
     } else {
-      this.passwordStrength = 'medium';
+      return 'medium';
     }
+  }
+
+  getPasswordStrengthColor() {
+    const strength = this.checkPasswordStrength();
+    return strength === 'weak' ? 'red' : strength === 'medium' ? 'yellow' : 'green';
+  }
+
+  getPasswordStrengthText() {
+    const strength = this.checkPasswordStrength();
+    return strength === 'weak' ? 'Слабкий' : strength === 'medium' ? 'Середній' : 'Міцний';
   }
 }

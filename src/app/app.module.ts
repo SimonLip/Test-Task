@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { PasswordStrengthComponent } from './password-strength/password-strength.component';
+import { PasswordStrengthService } from './password-strength/password-strength.service';
 
 @NgModule({
   declarations: [
@@ -12,9 +13,9 @@ import { PasswordStrengthComponent } from './password-strength/password-strength
   ],
   imports: [
     BrowserModule,
-    FormsModule 
+    FormsModule
   ],
-  providers: [],
+  providers: [PasswordStrengthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
